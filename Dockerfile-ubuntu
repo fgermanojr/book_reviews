@@ -1,0 +1,93 @@
+FROM ubuntu:18.04
+
+# in ~/src/rubyabq2
+# docker build -f Dockerfile-ubuntu .
+# docker image ls
+# docker run -it -v /Users/frankatjackrabbit/src/rubyabq2:/rubyabq2 --name rails6dot1 <image id> bash
+# docker ps
+# docker exec -it rails6dot1 bash
+
+# changes within container are propagated both ways
+
+# RUN DEBIAN_FRONTEND=noninteractive \
+#     TZ=America/Denver \
+# apt-get update ...  This didn't work.
+
+# Set timezone:
+RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && echo $CONTAINER_TIMEZONE > /etc/timezone
+# This worked.
+
+# Install dependencies:
+# TBD too much postgres, just need end user stuff for psql; TBD sw to apt
+RUN apt-get update -qq && apt-get install -y tzdata build-essential git \
+rbenv ruby-build bash vim curl \
+libssl-dev postgresql libpq-dev postgresql-client \
+# stuff for rails, TBD verify need
+libreadline-dev zlib1g-dev autoconf bison \
+libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev
+
+# install ruby with rbenv
+RUN git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+RUN echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+RUN . ~/.bashrc
+# add the rbenv plugin
+RUN git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+
+RUN rbenv install -l
+RUN rbenv install 3.0.2
+RUN rbenv global 3.0.2
+RUN ruby -v
+
+# install nvm 16.9.0
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+RUN . ~/.bashrc
+
+# # install node with nvm
+# RUN nvm install node
+# RUN npm --version    7.21.1
+
+# # install yarn with npm
+# RUN npm install -g yarn
+# RUN yarn -v     1.22.1
+
+WORKDIR /rubyabq2
+
+# RUN nodejs -v
+# RUN npm -v
+
+# RUN gem install rails -v=6.1.4
+
+# # dot builds in current directory
+# RUN rails new . --database=postgresql --webpacker=react
+# # rails new runs a bundle install at the end.
+# # do this manually so rspec-rails is added to development, test
+# # x RUN bundle add rspec-rails
+# # x RUN bundle add react-rails
+
+# # # had to run manually
+# # RUN rails webpacker:install # skip, already done
+# # RUN rails g react:install # skip, one supplied with react install
+# # RUN rails g rspec:install
+# # RUN rails g react:component HelloWorld name:string
+# skip, one supplied with react install
+
+# # RUN bundle install
+
+# # # once up with docker-compose so have db service
+# # --- manually add username, password, and host to config/database.yml
+# # --- specifically, postgres, postgres, db
+# # rake db:create
+
+# # add root 'pages#index' to config/routes.rb
+# # rails g controller pages index
+# # add react component HelloWorld to app/views/pages/index.html.erb
+
+# # RUN bundle install --verbose --jobs 20 --retry 5
+
+EXPOSE 3001
+
+CMD ["bash"]
+
+# CMD ["bundle","exec","rails","server",
+#                "-p","2999","-b","0.0.0.0"]
