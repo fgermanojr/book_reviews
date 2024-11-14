@@ -1,4 +1,17 @@
 <p id="notice"><%= notice %></p>
 
+<h2>Review</h2>
+
+<table>
+  <tbody>
+    <tr><td>User:</td><td><%= current_user ? current_user.id : '' %></td></tr>
+    <tr><td>BookTitle:</td><td><%= @book.title%></td></tr>
+    <tr><td>Rating:</td><td><%= @review.rating.to_s%></td></tr>
+    <tr><td>Content:</td><td><%= @review.content%></td></tr>
+    <tr><td>CreatedAt:</td><td><%= @review.created_at%></td></tr>
+    <tr><td>UpdatedAt:</td><td><%= @review.updated_at%></td></tr>
+  </tbody>
+</table>
+
 <%= link_to 'Edit', edit_review_path(@review) %> |
 <%= link_to 'Back', reviews_path %>

@@ -1,20 +1,44 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Books</h1>
+<div>
+  <% if user_signed_in? %> 
+  <div> Welcome <%= current_user.email %> </div> 
+    <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+  <% else %>
+    <%= button_to "Sign in", new_user_session_path %> 
+  <% end %>
+</div>
 
+<h1>Books</h1>
 <table>
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Publication_Year</th>
+      <th>ISBN</th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @books.each do |book| %>
       <tr>
+        <td><%= book.title %></td> 
+        <td><%= book.author %></td> 
+        <td><%= book.publication_year %></td> 
+        <td><%= book.isbn %></td>
         <td><%= link_to 'Show', book %></td>
-        <td><%= link_to 'Edit', edit_book_path(book) %></td>
-        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <% if user_signed_in? %>
+          <td><%= link_to 'Review', new_review_path(review: { book_id: book.id }), method: :get %></td>
+          <td><%= link_to 'Edit', edit_book_path(book) %></td>
+          <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+          <td></td>
+          <td></td>
+          <td></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +46,5 @@
 
 <br>
 
-<%= link_to 'New Book', new_book_path %>
+<%= link_to 'New Book', new_book_path %> |
+<%= link_to 'Reviews', reviews_path %>

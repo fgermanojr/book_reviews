@@ -1,4 +1,9 @@
 <%= form_with(model: review) do |form| %>
+  <%= form.label :rating %>
+  <%= form.select :rating, [ ['*****', 1], ['****', 2], ['***', 3], ['**', 2], ['*',1] ].collect { |r| [ r[0], r[1]] } %>
+  <%= form.label :content %>
+  <%= form.text_field :content %>
+  <%= form.hidden_field :book_id, value: @book.id %>
   <% if review.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>

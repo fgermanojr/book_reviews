@@ -1,4 +1,13 @@
-<%= form_with(model: book) do |form| %>
+<%= form_with model: book do |form| %>
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+  <%= form.label :author %>
+  <%= form.text_field :author %>
+  <%= form.label :publication_year %>
+  <%= form.text_field :publication_year %>
+  <%= form.label :isbn %>
+  <%= form.text_field :isbn %>
+
   <% if book.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>

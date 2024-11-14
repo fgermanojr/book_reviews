@@ -91,20 +91,20 @@ function TabGroup() {
   );
 }
 
-const types = ["Cash", "Credit Card", "Bitcoin"];
+// const types = ["Cash", "Credit Card", "Bitcoin"];
 
-function ToggleGroup() {
-  const [active, setActive] = useState(types[0]);
-  return (
-    <div>
-      {types.map((type) => (
-        <MyButtonToggle active={active === type} onClick={() => setActive(type)}>
-          {type}
-        </MyButtonToggle>
-      ))}
-    </div>
-  );
-}
+// function ToggleGroup() {
+//   const [active, setActive] = useState(types[0]);
+//   return (
+//     <div>
+//       {types.map((type) => (
+//         <MyButtonToggle active={active === type} onClick={() => setActive(type)}>
+//           {type}
+//         </MyButtonToggle>
+//       ))}
+//     </div>
+//   );
+// }
 
 export default function App() {
   return (
@@ -126,11 +126,11 @@ export default function App() {
           Disabled
         </MyButton>
       </div>
-      <a href="https://books/index" target="_blank">
-        <MyButton>Link</MyButton>
+      <a href="http://0.0.0.0:3001/books" target="_blank">
+        <MyButton>ENTER Book World</MyButton>
       </a>
-      <ToggleGroup />
-      <TabGroup />
+      {/* <ToggleGroup /> */}
+      {/* <TabGroup /> */}
     </>
   );
 }

@@ -1,4 +1,18 @@
 <p id="notice"><%= notice %></p>
 
+<h2>Book</h2>
+
+<table>
+  <tbody>
+    <tr><td>Title:</td><td><%= @book.title%></td></tr>
+    <tr><td>Author:</td><td><%= @book.author%></td></tr>
+    <tr><td>PublicationYear:</td><td><%= @book.publication_year.to_str%></td></tr>
+    <tr><td>ISBN:</td><td><%= @book.isbn%></td></tr>
+  </tbody>
+</table>
+
+<h2>Reviews</h2>
+<%= render '/shared/reviews', reviews: @book.reviews%>
+
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>
