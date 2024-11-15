@@ -1,5 +1,6 @@
 class Book < ApplicationRecord
   has_many :reviews # , inverse_of: :book
+  self.per_page = 3
 
   validates :title, :author, :publication_year, :isbn, presence: true
 

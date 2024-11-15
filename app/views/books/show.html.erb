@@ -12,7 +12,7 @@
 </table>
 
 <h2>Reviews</h2>
-<%= render '/shared/reviews', reviews: @book.reviews%>
+<%= render '/shared/reviews', reviews: @book.reviews.paginate(page: params[:page])%>
 
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>

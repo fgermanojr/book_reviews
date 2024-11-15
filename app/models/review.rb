@@ -6,4 +6,6 @@ class Review < ApplicationRecord
 
     validates_presence_of :rating, :content
     validates :rating, numericality: true
+
+    self.per_page = 3
 end

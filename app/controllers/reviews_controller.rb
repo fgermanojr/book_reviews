@@ -4,7 +4,8 @@ class ReviewsController < ApplicationController
 
   # GET /reviews or /reviews.json
   def index
-    @reviews = Review.all
+    # @reviews = Review.all
+    @reviews = Review.paginate(page: params[:page]) # , per_page:
   end
 
   # GET /reviews/1 or /reviews/1.json
@@ -22,6 +23,8 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/1/edit
   def edit
+    @review = Review.find(params[:id])
+    @book = @review.book
   end
 
   # POST /reviews or /reviews.json
