@@ -4,7 +4,8 @@ class Book < ApplicationRecord
 
   validates :title, :author, :publication_year, :isbn, presence: true
 
-  validate :isbn_format_validated
+  # TBD remove validate :isbn_format_validated
+  validates :isbn,   :isbn_format => true
 
   def average_rating
     reviews = self.reviews
@@ -21,17 +22,17 @@ class Book < ApplicationRecord
     avg_rating_str
   end
 
-  def isbn_format_validated
-    unless isbn
-      errors.add(:isbn, 'Isbn is Blank')
-      return
-    end
+  # def isbn_format_validated
+  #   unless isbn
+  #     errors.add(:isbn, 'Isbn is Blank')
+  #     return
+  #   end
 
-    # Anything goes for now: next ISBN 
-    validated = true # TBD sw to simple regex; describe other options
+  #   # Anything goes for now: next ISBN 
+  #   validated = true # TBD sw to simple regex; describe other options
     
-    unless validated
-      errors.add(:isbn, 'Invalid Isbn Format')
-    end
-  end
+  #   unless validated
+  #     errors.add(:isbn, 'Invalid Isbn Format')
+  #   end
+  # end
 end

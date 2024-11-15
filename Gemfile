@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'react-rails'
 gem 'devise'
 gem 'will_paginate', '~> 4.0'
+gem 'isbn_validation'
 
 group :development, :test do
   gem 'rspec-rails'
