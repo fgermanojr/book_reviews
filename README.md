@@ -29,7 +29,7 @@ It illustrates the use of docker, rails, and postgresql.
 	3. Build the image: docker compose up
 	4. See the containers: docker ps
 	5. Note the web container id, <ID>
-	6. Start a shell: docker exec -it <ID> bash
+	6. Start a shell: docker exec -it -v /Users/frankatjackrabbit/src/rubyabq2:/rubyabq2 --name bookworld <ID> bash
 	6.5 You might need to
 	bundle exec db:create
 	bundle exec db:migrate
