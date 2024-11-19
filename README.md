@@ -30,6 +30,10 @@ It illustrates the use of docker, rails, and postgresql.
 	4. See the containers: docker ps
 	5. Note the web container id, <ID>
 	6. Start a shell: docker exec -it <ID> bash
+	6.5 You might need to
+	bundle exec db:create
+	bundle exec db:migrate
+	bundle exec db:seed
 	7. Start the web server: bundle exec rails s -p 3001 -b 0.0.0.0
 	8. Enter the app in browser: localhost: 3001
 	9. Note you will enter a react page; click on the Enter Book World;
