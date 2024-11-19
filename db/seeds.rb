@@ -18,7 +18,7 @@ end
 def generate_isbn_text
    x = Faker::Code.isbn(base: 13) # yields "557186730307-8"
    # Format to my liking
-   "ISBN #{x[0..2]}-#{x[3..3]}-#{x[4..6]}-#{x[7..11]}-#{x[13]}"
+   "#{x[0..2]}-#{x[3..3]}-#{x[4..6]}-#{x[7..11]}-#{x[13]}"
 
    # Faker:Code.isbn(base: 10) # yields "457389822-0"
 end
