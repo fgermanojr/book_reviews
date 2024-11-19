@@ -10,6 +10,7 @@ class BooksController < ApplicationController
 
   # GET /books/1 or /books/1.json
   def show
+    @reviews = @book.reviews.paginate(page: params[:page])
   end
 
   # GET /books/new
@@ -19,12 +20,12 @@ class BooksController < ApplicationController
 
   # GET /books/1/edit
   def edit
+    @reviews = @book.reviews.paginate(page: params[:page])
   end
 
   # POST /books or /books.json
   def create
     @book = Book.new(book_params)
-
     respond_to do |format|
       if @book.save
         format.html { redirect_to @book, notice: "Book was successfully created." }

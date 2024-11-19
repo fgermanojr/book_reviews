@@ -5,7 +5,7 @@ class Book < ApplicationRecord
   validates :title, :author, :publication_year, :isbn, presence: true
 
   # TBD remove validate :isbn_format_validated
-  validates :isbn,   :isbn_format => true
+  validates :isbn, :isbn_format => true # defined by gem
 
   def average_rating
     reviews = self.reviews
