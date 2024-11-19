@@ -1,6 +1,6 @@
 <%= form_with(model: review) do |form| %>
   <%= form.label :rating %>
-  <%= form.select :rating, required: true, [ ['*****', 1], ['****', 2], ['***', 3], ['**', 2], ['*',1] ].collect { |r| [ r[0], r[1]] } %>
+  <%= form.select :rating, [ ['*****', 1], ['****', 2], ['***', 3], ['**', 2], ['*',1] ].collect { |r| [ r[0], r[1]] } %>
   <%= form.label :content %>
   <%= form.text_area(:content, required: true, size: '50x10') %>
   <%= form.hidden_field :book_id, value: @book.id %>
